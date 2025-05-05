@@ -1,3 +1,49 @@
+    ./build/bin/whisper-cli -l zh -m models/ggml-large-v3-q5_0.bin -f ../nihao_zhongguo.wav
+    确实能识别中文(你好, 人们, 中国, 汉字), 但是要花 54秒
+    
+    
+    ./build/bin/whisper-cli -l zh -m models/ggml-small.bin -f ../nihao_zhongguo.wav
+    你好 人们 中国 汉字
+    需要6秒, 超过wav长度的5秒
+    
+    
+    ./build/bin/whisper-cli -l zh -m models/ggml-base.bin -f ../nihao_zhongguo.wav
+    识别为繁体:           你好,人們,中國,漢字
+    识别hello jack也出错: 你好,Hello,Yes!
+    虽然仅需2秒
+    
+    ./build/bin/whisper-cli -l zh -m models/ggml-base.bin -f ../nihao_zhongguo.wav --prompt "用简体中文输出"
+    你好,人们,中国,汉字
+    
+    
+    ./build/bin/whisper-cli -l zh -m models/ggml-base.bin -f ../nihao_hello_jack.wav --prompt "用简体中文输出"
+    你好,Hello,Yes!
+    仅需2秒, 但是是错的
+    
+    用麦克风输出只能用base延迟还可忍受, 但是延迟仍然有3秒, 并且step 必须设1500 及1.5秒 才行:
+    ./build/bin/whisper-stream -m ./models/ggml-base.bin -t 8 -l zh --step 1500
+    
+    
+    ggml-large-v3-q5_0.bin 能识别中文, 但慢
+    ggml-large-v3-turbo-q5_0.bin 不能识别中文
+    
+    
+    base 	142 MiB 	465707469ff3a37a2b9b8d8f89f2f99de7299dac
+    base.en 	142 MiB 	137c40403d78fd54d454da0f9bd998f78703390c
+    small 	466 MiB 	55356645c2b361a969dfd0ef2c5a50d530afd8d5
+    small.en 	466 MiB 	db8a495a91d927739e50b3fc1cc4c6b8f6c2d022
+    small.en-tdrz 	465 MiB 	b6c6e7e89af1a35c08e6de56b66ca6a02a2fdfa1
+    medium 	1.5 GiB 	fd9727b6e1217c2f614f9b698455c4ffd82463b4
+    medium.en 	1.5 GiB 	8c30f0e44ce9560643ebd10bbe50cd20eafd3723
+    large-v1 	2.9 GiB 	b1caaf735c4cc1429223d5a74f0f4d0b9b59a299
+    large-v2 	2.9 GiB 	0f4c8e34f21cf1a914c59d8b3ce882345ad349d6
+    large-v2-q5_0 	1.1 GiB 	00e39f2196344e901b3a2bd5814807a769bd1630
+    large-v3 	2.9 GiB 	ad82bf6a9043ceed055076d0fd39f5f186ff8062
+    large-v3-q5_0 	1.1 GiB 	e6e2ed78495d403bef4b7cff42ef4aaadcfea8de
+    large-v3-turbo 	1.5 GiB 	4af2b29d7ec73d781377bfd1758ca957a807e941
+    large-v3-turbo-q5_0 	547 MiB 	e050f7970618a659205450ad97eb95a18d69c9ee
+
+
 # whisper.cpp
 
 ![whisper.cpp](https://user-images.githubusercontent.com/1991296/235238348-05d0f6a4-da44-4900-a1de-d0707e75b763.jpeg)
