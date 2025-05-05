@@ -21,7 +21,7 @@
     仅需2秒, 但是是错的
     
     用麦克风输入只能用base延迟还可忍受, 但是延迟仍然有3秒, 并且context step 至少 须设1200 即1.2秒 才能识别正确:
-    ./build/bin/whisper-stream -m ./models/ggml-base.bin -t 8 -l zh --step 1500
+    ./build/bin/whisper-stream -m ./models/ggml-base.bin -t 8 -l zh --step 1200
     
     
     ggml-large-v3-q5_0.bin 能识别中文, 但慢
