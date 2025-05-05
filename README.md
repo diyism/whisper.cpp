@@ -20,7 +20,7 @@
     你好,Hello,Yes!
     仅需2秒, 但是是错的
     
-    用麦克风输出只能用base延迟还可忍受, 但是延迟仍然有3秒, 并且step 必须设1500 及1.5秒 才行:
+    用麦克风输入只能用base延迟还可忍受, 但是延迟仍然有3秒, 并且step 必须设1500 及1.5秒 才行:
     ./build/bin/whisper-stream -m ./models/ggml-base.bin -t 8 -l zh --step 1500
     
     
